@@ -109,6 +109,11 @@ jobs:
         with:
           submodules: recursive
           repository: "zotero/zotero-android"
+      - name: patch urls
+        run: | 
+          find . -type f -exec sed -i 's/https:\/\/api.zotero.org/http:\/\/SOME_LOCAL_PORT/g' {} \;
+          find . -type f -exec sed -i 's/https:\/\/www.zotero.org/http:\/\/SOME_LOCAL_PORT/g' {} \;
+          find . -type f -exec sed -i 's/stream.zotero.org/SOME_LOCAL_PORT/g' {} \;
 
       - name: set up JDK
         uses: actions/setup-java@v3
